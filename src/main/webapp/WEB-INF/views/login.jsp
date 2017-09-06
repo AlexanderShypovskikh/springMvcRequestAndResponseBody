@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page session="false" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -19,19 +20,26 @@
   <section class="container">
     <div class="login">
       <h1>Login to Web App</h1>
-      <form name="loginForm" method="POST" action="login" onsubmit="return validateForm()">
-        <p><input type="text" name="login" value="" placeholder="Email"></p>
-        <sub id="loginErr" class="error"></sub>
-        <p><input type="password" name="password" value="" placeholder="Password"></p>
-        <sub id="passwordErr" class="error"></sub>
-        <p class="remember_me">
+      
+        <form:form name="loginForm" method="POST" commandName="user" action="check-user">
+        	
+        	<form:label path="email">Email</form:label>
+        	<form:input path="email" placeholder="email"/>
+       		<form:errors path="email" class="error"/>
+            <br>
+        	<form:label path="password">Password</form:label>
+        	<form:input path="password"  placeholder="email"/>
+        	<form:errors path="password" class="error"/>
+        
+         <p class="remember_me">
           <label>
             <input type="checkbox" name="remember_me" id="remember_me">
             Remember me on this computer
           </label>
         </p>
         <p class="submit"><input type="submit" name="commit" value="Login"></p>
-      </form>
+      </form:form>
+      
        <p class="submit"><sub class="registration"><a href="jsp/registration.jsp">not registered? register now</a></sub></p>
     </div>
 
